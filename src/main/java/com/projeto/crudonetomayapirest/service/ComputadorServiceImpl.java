@@ -3,14 +3,18 @@ package com.projeto.crudonetomayapirest.service;
 import com.projeto.crudonetomayapirest.dominio.Computador;
 import com.projeto.crudonetomayapirest.exception.ComputadorNotFoundException;
 import com.projeto.crudonetomayapirest.repository.ComputadorRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
+@Service
 public class ComputadorServiceImpl implements ComputadorService {
 
+    @Autowired
     private ComputadorRepository computadorRepository;
 
     @Override
