@@ -1,5 +1,6 @@
 package com.projeto.crudonetomayapirest.dominio;
 
+import com.projeto.crudonetomayapirest.service.dto.ColaboradorDTO;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -37,5 +38,15 @@ public class Colaborador {
 
     public void deleteComputador(Computador computador){
         computadores.remove(computador);
+    }
+
+    public static Colaborador from (ColaboradorDTO colaboradorDTO){
+        Colaborador colaborador = new Colaborador();
+        colaborador.setName(colaboradorDTO.getName());
+        colaborador.setCPF(colaboradorDTO.getCPF());
+        colaborador.setFuncao(colaborador.getFuncao());
+
+        return colaborador;
+
     }
 }
