@@ -1,9 +1,10 @@
-package com.projeto.crudonetomayapirest.service;
+package com.projeto.crudonetomayapirest.service.impl;
 
 import com.projeto.crudonetomayapirest.dominio.Colaborador;
 import com.projeto.crudonetomayapirest.dominio.Computador;
 import com.projeto.crudonetomayapirest.exception.ColaboradorNotFoundException;
 import com.projeto.crudonetomayapirest.repository.ColaboradorRepository;
+import com.projeto.crudonetomayapirest.service.ColaboradorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,13 +14,13 @@ import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
 @Service
-public class ColaboradorServiceImpl implements ColaboradorService{
+public class ColaboradorServiceImpl implements ColaboradorService {
 
     @Autowired
     private ColaboradorRepository colaboradorRepository;
 
     @Autowired
-    private  ComputadorServiceImpl computadorServiceImpl;
+    private ComputadorServiceImpl computadorServiceImpl;
 
     @Override
     public Colaborador createColaborador(Colaborador colaborador) {
