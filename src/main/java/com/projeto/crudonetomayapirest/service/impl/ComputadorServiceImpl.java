@@ -1,8 +1,9 @@
-package com.projeto.crudonetomayapirest.service;
+package com.projeto.crudonetomayapirest.service.impl;
 
 import com.projeto.crudonetomayapirest.dominio.Computador;
 import com.projeto.crudonetomayapirest.exception.ComputadorNotFoundException;
 import com.projeto.crudonetomayapirest.repository.ComputadorRepository;
+import com.projeto.crudonetomayapirest.service.ComputadorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
