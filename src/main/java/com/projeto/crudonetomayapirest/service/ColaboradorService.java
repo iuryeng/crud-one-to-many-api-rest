@@ -9,7 +9,7 @@ public interface ColaboradorService {
 
     Colaborador createColaborador(Colaborador colaborador);
 
-    Colaborador updateColaborador(Long colaboradorId, Colaborador colaborador);
+    Colaborador updateColaborador( Colaborador colaborador);
 
     List<Colaborador> getAllColaborador();
 
