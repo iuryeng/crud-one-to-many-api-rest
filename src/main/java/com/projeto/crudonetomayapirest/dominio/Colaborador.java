@@ -32,6 +32,10 @@ public class Colaborador {
     }
 
     public void addComputador(Computador computador){
+        computadores.add(computador);
+    }
 
+    public void deleteComputador(Computador computador){
+        computadores.remove(computador);
     }
 }
