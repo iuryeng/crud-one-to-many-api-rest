@@ -1,5 +1,6 @@
 package com.projeto.crudonetomayapirest.dominio;
 
+import com.projeto.crudonetomayapirest.service.dto.ComputadorDTO;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -18,4 +19,12 @@ public class Computador {
 
     private Long serviceTag;
 
+    public static Computador from(ComputadorDTO computadorDTO){
+        Computador computador = new Computador();
+        computador.setModelo(computadorDTO.getModelo());
+        computador.setMarca(computadorDTO.getMarca());
+        computador.setServiceTag(computador.getServiceTag());
+        return computador;
+
+    }
 }
