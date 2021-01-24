@@ -1,8 +1,10 @@
 package com.projeto.crudonetomayapirest.service;
 
 import com.projeto.crudonetomayapirest.dominio.Computador;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
+
 
 public interface ComputadorService {
 
