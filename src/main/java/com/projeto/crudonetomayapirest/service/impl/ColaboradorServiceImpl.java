@@ -3,6 +3,7 @@ package com.projeto.crudonetomayapirest.service.impl;
 import com.projeto.crudonetomayapirest.dominio.Colaborador;
 import com.projeto.crudonetomayapirest.dominio.Computador;
 import com.projeto.crudonetomayapirest.exception.ColaboradorNotFoundException;
+import com.projeto.crudonetomayapirest.exception.ComputadorIsAlreadyAssingnedException;
 import com.projeto.crudonetomayapirest.repository.ColaboradorRepository;
 import com.projeto.crudonetomayapirest.service.ColaboradorService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
@@ -30,13 +32,23 @@ public class ColaboradorServiceImpl implements ColaboradorService {
     }
 
     @Override
-    public Colaborador updateColaborador(Long colaboradorId, Colaborador colaborador) {
-        Colaborador updateColaborador = getColaboradorById(colaboradorId);
-        updateColaborador.setCPF(colaborador.getCPF());
-        updateColaborador.setFuncao(colaborador.getFuncao());
-        updateColaborador.setName(colaborador.getName());
-        return updateColaborador;
+    public Colaborador updateColaborador(Colaborador colaborador) {
+        Optional<Colaborador> colaboradorDb = this.colaboradorRepository.findById(colaborador.getId());
+        if(colaboradorDb.isPresent()) {
+            Colaborador updateColaborador = colaboradorDb.get();
+            updateColaborador.setId(colaborador.getId());
+            updateColaborador.setName(colaborador.getName());
+            updateColaborador.setCPF(colaborador.getCPF());
+            updateColaborador.setFuncao(colaborador.getFuncao());
+            updateColaborador.setComputadores(colaborador.getComputadores());
+            colaboradorRepository.save(updateColaborador);
+            return updateColaborador;
+
+        }else{
+            throw new ColaboradorNotFoundException(colaborador.getId());
+        }
     }
+
 
     @Override
     public List<Colaborador> getAllColaborador() {
@@ -58,7 +70,11 @@ public class ColaboradorServiceImpl implements ColaboradorService {
     public Colaborador addComputadorParaColaborador(Long colaboradorId, Long computadorId) {
         Colaborador colaborador = getColaboradorById(colaboradorId);
         Computador computador = computadorServiceImpl.getComputadorById(computadorId);
+        if(Objects.nonNull(computador.getColaborador())){
+            throw new ComputadorIsAlreadyAssingnedException(computadorId, computador.getColaborador().getId());
+        }
         colaborador.addComputador(computador);
+        computador.setColaborador(colaborador);
         return colaborador;
 
     }

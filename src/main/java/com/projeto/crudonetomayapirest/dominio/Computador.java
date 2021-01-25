@@ -19,11 +19,14 @@ public class Computador {
 
     private Long serviceTag;
 
+    @ManyToOne
+    private Colaborador colaborador;
+
     public static Computador from(ComputadorDTO computadorDTO){
         Computador computador = new Computador();
         computador.setModelo(computadorDTO.getModelo());
         computador.setMarca(computadorDTO.getMarca());
-        computador.setServiceTag(computador.getServiceTag());
+        computador.setServiceTag(computadorDTO.getServiceTag());
         return computador;
 
     }

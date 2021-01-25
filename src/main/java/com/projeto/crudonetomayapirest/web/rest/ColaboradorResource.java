@@ -1,6 +1,7 @@
 package com.projeto.crudonetomayapirest.web.rest;
 
 import com.projeto.crudonetomayapirest.dominio.Colaborador;
+import com.projeto.crudonetomayapirest.service.ColaboradorService;
 import com.projeto.crudonetomayapirest.service.dto.ColaboradorDTO;
 import com.projeto.crudonetomayapirest.service.impl.ColaboradorServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,11 +13,16 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping("/colaboradores")
 public class ColaboradorResource {
 
     @Autowired
     private ColaboradorServiceImpl colaboradorServiceImpl;
+
+    @Autowired
+    private ColaboradorService colaboradorService;
+
 
     @PostMapping
     public ResponseEntity<ColaboradorDTO> createColaborador(@RequestBody ColaboradorDTO colaboradorDTO){
@@ -24,10 +30,11 @@ public class ColaboradorResource {
         return new ResponseEntity<>(ColaboradorDTO.from(colaborador), HttpStatus.CREATED);
     }
 
+
     @PutMapping(value = "{id}")
-    public  ResponseEntity<ColaboradorDTO> updateColaborador(@PathVariable Long id, @RequestBody ColaboradorDTO colaboradorDTO ){
-        Colaborador colaborador = colaboradorServiceImpl.updateColaborador(id, Colaborador.from(colaboradorDTO));
-        return new ResponseEntity<>(ColaboradorDTO.from(colaborador), HttpStatus.OK);
+    public ResponseEntity<Colaborador> updateColaborador(@PathVariable long id, @RequestBody Colaborador colaborador){
+        colaborador.setId(id);
+        return ResponseEntity.status(HttpStatus.OK).body(this.colaboradorService.updateColaborador(colaborador));
     }
 
     @GetMapping

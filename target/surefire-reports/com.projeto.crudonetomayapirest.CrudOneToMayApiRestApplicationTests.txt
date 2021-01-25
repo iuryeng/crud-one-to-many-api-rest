@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: com.projeto.crudonetomayapirest.CrudOneToMayApiRestApplicationTests
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 7.442 s - in com.projeto.crudonetomayapirest.CrudOneToMayApiRestApplicationTests

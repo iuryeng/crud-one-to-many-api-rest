@@ -21,16 +21,10 @@ public class Colaborador {
 
     private String funcao;
 
-    @OneToMany(
-            cascade = CascadeType.ALL
-    )
-
+    @OneToMany
     @JoinColumn(name = "id_colaborador")
     private List<Computador> computadores = new ArrayList<>();
 
-    public Colaborador(){
-
-    }
 
     public void addComputador(Computador computador){
         computadores.add(computador);
@@ -44,7 +38,7 @@ public class Colaborador {
         Colaborador colaborador = new Colaborador();
         colaborador.setName(colaboradorDTO.getName());
         colaborador.setCPF(colaboradorDTO.getCPF());
-        colaborador.setFuncao(colaborador.getFuncao());
+        colaborador.setFuncao(colaboradorDTO.getFuncao());
 
         return colaborador;
 

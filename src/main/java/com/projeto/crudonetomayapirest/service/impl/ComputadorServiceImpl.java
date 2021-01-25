@@ -28,10 +28,13 @@ public class ComputadorServiceImpl implements ComputadorService {
 
     @Override
     public Computador updateComputador(Long computadorId, Computador computador) {
+
         Computador updateComputador = getComputadorById(computadorId);
         updateComputador.setServiceTag(computador.getServiceTag());
         updateComputador.setMarca(computador.getMarca());
         updateComputador.setModelo(computador.getModelo());
+        updateComputador.setColaborador(computador.getColaborador());
+        updateComputador.setId(computador.getId());
 
         return updateComputador;
 
